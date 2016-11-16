@@ -13,8 +13,10 @@ public class Restaurante {
     private String horarioAbrir;
     private String horarioCerrar;
     private String tipoComida;
-    private ArrayList evaluaciones;
-    //sorteo? va aca o como clase separada?
+    //Aqui se guardan todas las evaluaciones del restaurante
+    private ArrayList<Evaluacion> evaluaciones;
+    //Aqui se guardan todos los clientes que pueden participar del sorteo
+    private ArrayList<Cliente> participantes;
 
     //Constructor para nuevo restaurante;
     public Restaurante(String nombre, String direccion, String horarioAbrir, String horarioCerrar, String tipoComida) {
@@ -24,6 +26,7 @@ public class Restaurante {
         this.horarioCerrar = horarioCerrar;
         this.tipoComida = tipoComida;
         this.evaluaciones = new ArrayList();
+        this.participantes = new ArrayList();
     }
     
     //Metodos Getters y Setter
@@ -71,10 +74,16 @@ public class Restaurante {
         return evaluaciones;
     }
 
-    public void setEvaluaciones(ArrayList evaluaciones) {
+    public void setEvaluaciones(ArrayList<Evaluacion> evaluaciones) {
         this.evaluaciones = evaluaciones;
     }
     
-    
+     public ArrayList getParticipantes() {
+        return participantes;
+    }
+
+    public void setParticipantes(ArrayList<Cliente> participantes) {
+        this.participantes = participantes;
+    }
     
 }
