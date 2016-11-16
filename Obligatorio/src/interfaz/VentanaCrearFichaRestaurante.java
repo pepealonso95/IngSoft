@@ -7,6 +7,7 @@ package interfaz;
 
 import dominio.Sistema;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -46,6 +47,11 @@ public class VentanaCrearFichaRestaurante extends javax.swing.JFrame {
         btnCrearFicha = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         lblTitulo.setText("CREAR FICHA RESTAURANTE");
 
@@ -144,13 +150,26 @@ public class VentanaCrearFichaRestaurante extends javax.swing.JFrame {
     private void btnCrearFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearFichaActionPerformed
         //Se verifica la informacion ingresada, se crea y se guarda ficha del nuevo restaurante
         if(verificarCampos()){
-            
+            if(this.sistema.agregarRestaurante(txtFldNombre.getText(), txtFldDireccion.getText(), txtFldHorarioApertura.getText(), txtFldHorarioCierre.getText(), txtFldTipoComida.getText())){
+                this.dispose();
+                this.padre.setEnabled(true);
+                this.padre.setVisible(true);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "faltan campos a completar");
         }
     }//GEN-LAST:event_btnCrearFichaActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        this.padre.setEnabled(true);
+        this.padre.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
    private boolean verificarCampos(){
        boolean retorno = true;
        if(txtFldNombre.getText().isEmpty() || txtFldDireccion.getText().isEmpty() || txtFldHorarioApertura.getText().isEmpty() || txtFldHorarioCierre.getText().isEmpty() || txtFldTipoComida.getText().isEmpty()){
+           
            retorno = false;
        }
        return retorno;

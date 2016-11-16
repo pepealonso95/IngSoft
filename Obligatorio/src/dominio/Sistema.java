@@ -29,16 +29,39 @@ public class Sistema {
         this.restaurantes = restaurantes;
     }
     
-    public void agregarRestaurante(String nombre, String direccion, String horarioApertura, String horarioCierre, String tipoComida){
+    public boolean agregarRestaurante(String nombre, String direccion, String horarioApertura, String horarioCierre, String tipoComida){
         //crea y agrega un nuevo restaurante al sistema si es que no se encuentra ya en el sistema
         Restaurante restaurante = new Restaurante(nombre, direccion, horarioApertura, horarioCierre, tipoComida);
         if(!restaurantes.contains(restaurante)){
             //no existe, entonces se agrega
             restaurantes.add(restaurante);
+            return true;
         }else{
             //ya existe, no se agrega y se avisa al usuario 
             JOptionPane.showMessageDialog(null, "Ya se encuentra creado el restaurante");
+            return false;
         }
+    }
+    
+     public void editarRestaurante(String nombre, String direccion, String horarioApertura, String horarioCierre, String tipoComida){
+        //edita los datos de un restaurante previamente ingresado al sistema
+        Restaurante restaurante = buscarRestaurantePorNombre(nombre);
+        restaurante.setNombre(nombre);
+        restaurante.setDireccion(direccion);
+        restaurante.setHorarioAbrir(horarioApertura);
+        restaurante.setHorarioCerrar(horarioCierre);
+        restaurante.setTipoComida(tipoComida);
+    }
+    
+    //Este metodo busca un restaurante en la lista por su nombre y en caso de encontrarlo devuelve toda la informacion de este
+    public Restaurante buscarRestaurantePorNombre(String Nombre) {
+        Restaurante ret = null;
+        for(int i = 0; i < restaurantes.size(); i++){
+            if(restaurantes.get(i).getNombre()==Nombre){
+                ret = restaurantes.get(i);
+            }
+        }
+        return ret;
     }
     
     

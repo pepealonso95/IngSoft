@@ -6,6 +6,7 @@
 package interfaz;
 
 import dominio.Sistema;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -137,9 +138,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnEditarFichaRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarFichaRestauranteActionPerformed
         //se clickeo el boton para editar una ficha de restaurante
-        VentanaEditarFichaRestaurante ventana = new VentanaEditarFichaRestaurante(this, sistema);
-        ventana.setVisible(true);
-        this.setEnabled(false);
+        if(VentanaPrincipal.sistema.getRestaurantes().size()>0){
+            VentanaEditarFichaRestaurante ventana = new VentanaEditarFichaRestaurante(this, sistema);
+            ventana.setVisible(true);
+            this.setEnabled(false);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "no hay restaurantes cargados para editar");
+        }
     }//GEN-LAST:event_btnEditarFichaRestauranteActionPerformed
 
     private void btnDefinirSorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDefinirSorteoActionPerformed
