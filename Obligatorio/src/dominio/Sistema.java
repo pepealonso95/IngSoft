@@ -6,6 +6,7 @@
 package dominio;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,6 +29,17 @@ public class Sistema {
         this.restaurantes = restaurantes;
     }
     
+    public void agregarRestaurante(String nombre, String direccion, String horarioApertura, String horarioCierre, String tipoComida){
+        //crea y agrega un nuevo restaurante al sistema si es que no se encuentra ya en el sistema
+        Restaurante restaurante = new Restaurante(nombre, direccion, horarioApertura, horarioCierre, tipoComida);
+        if(!restaurantes.contains(restaurante)){
+            //no existe, entonces se agrega
+            restaurantes.add(restaurante);
+        }else{
+            //ya existe, no se agrega y se avisa al usuario 
+            JOptionPane.showMessageDialog(null, "Ya se encuentra creado el restaurante");
+        }
+    }
     
     
 }
