@@ -36,5 +36,12 @@ public class Cliente {
         this.email = email;
     }
     
-    
+    public boolean noEsAnonimo(){
+        //retorna true si se posee informacion del cliente
+        boolean retorno = true;
+        if(this.nombre == "" && this.email == ""){
+            retorno = false;
+        }
+        return retorno;
+    }
 }

@@ -86,4 +86,25 @@ public class Restaurante {
         this.participantes = participantes;
     }
     
+    //Override de metodo Eguals, define que dos Restaurantes son iguales con igual nombre y direccion
+    @Override
+    public boolean equals(Object obj) {
+       boolean retorno = false;
+       if(this.getNombre().equals(((Restaurante)obj).getNombre()) && this.getDireccion().equals(((Restaurante)obj).getDireccion())){
+           retorno = true;
+       }
+       return retorno;
+    }
+    
+    public void agregarEvaluacion(String nombre, String mail, int puntuacion, String resena){
+        //crea el cliente y si eligio no ser anonimo se guarda en la lista de clientes para participar en la rifa
+        //crea la evaluacion y la guarda en la lista
+        Cliente cliente = new Cliente(nombre, mail);
+        Evaluacion evaluacion = new Evaluacion(cliente, puntuacion, resena);
+        evaluaciones.add(evaluacion);
+        if(!participantes.contains(cliente) && cliente.noEsAnonimo() && resena != ""){
+            //cliente y resena valido para participar del sorteo, entonces lo agrego a la lista de participantes
+            participantes.add(cliente);
+        }
+    }
 }
