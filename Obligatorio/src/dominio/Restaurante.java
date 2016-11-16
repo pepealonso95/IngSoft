@@ -2,6 +2,7 @@
 package dominio;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,6 +18,9 @@ public class Restaurante {
     private ArrayList<Evaluacion> evaluaciones;
     //Aqui se guardan todos los clientes que pueden participar del sorteo
     private ArrayList<Cliente> participantes;
+    private boolean estaDefinidoSorteo;
+    private int cantidadGanadores;
+    private String descripcionPremio;
 
     //Constructor para nuevo restaurante;
     public Restaurante(String nombre, String direccion, String horarioAbrir, String horarioCerrar, String tipoComida) {
@@ -27,6 +31,7 @@ public class Restaurante {
         this.tipoComida = tipoComida;
         this.evaluaciones = new ArrayList();
         this.participantes = new ArrayList();
+        this.estaDefinidoSorteo = false;
     }
     
     //Metodos Getters y Setter
@@ -85,12 +90,36 @@ public class Restaurante {
     public void setParticipantes(ArrayList<Cliente> participantes) {
         this.participantes = participantes;
     }
+
+    public boolean isEstaDefinidoSorteo() {
+        return estaDefinidoSorteo;
+    }
+
+    public void setEstaDefinidoSorteo(boolean estaDefinidoSorteo) {
+        this.estaDefinidoSorteo = estaDefinidoSorteo;
+    }
+
+    public int getCantidadGanadores() {
+        return cantidadGanadores;
+    }
+
+    public void setCantidadGanadores(int cantidadGanadores) {
+        this.cantidadGanadores = cantidadGanadores;
+    }
+
+    public String getDescripcionPremio() {
+        return descripcionPremio;
+    }
+
+    public void setDescripcionPremio(String descripcionPremio) {
+        this.descripcionPremio = descripcionPremio;
+    }
     
     //Override de metodo Eguals, define que dos Restaurantes son iguales con igual nombre y direccion
     @Override
     public boolean equals(Object obj) {
        boolean retorno = false;
-       if(this.getNombre().equals(((Restaurante)obj).getNombre()) && this.getDireccion().equals(((Restaurante)obj).getDireccion())){
+       if(this.getNombre().equals(((Restaurante)obj).getNombre())){
            retorno = true;
        }
        return retorno;
@@ -102,9 +131,28 @@ public class Restaurante {
         Cliente cliente = new Cliente(nombre, mail);
         Evaluacion evaluacion = new Evaluacion(cliente, puntuacion, resena);
         evaluaciones.add(evaluacion);
-        if(!participantes.contains(cliente) && cliente.noEsAnonimo() && resena != ""){
+        if(!participantes.contains(cliente) && cliente.noEsAnonimo() && !resena.equals("")){
             //cliente y resena valido para participar del sorteo, entonces lo agrego a la lista de participantes
             participantes.add(cliente);
         }
     }
+    
+    public void definirSorteo(int cantidadGanadores, String premio){
+        //define los parametros del sorteo
+        this.estaDefinidoSorteo = true;
+        this.cantidadGanadores = cantidadGanadores;
+        this.descripcionPremio = premio;
+    }
+    
+    /*public void realizarSorteo(){
+        if(estaDefinidoSorteo){
+            //me defino los numeros de los participantes ganadores
+            int cantParticipantes = participantes.size();
+            int cantGanadores = Math.min(cantidadGanadores, cantParticipantes);
+            int[] numerosGanadores = new int[cantGanadores];
+            for(int i = )
+        }else{
+            JOptionPane.showMessageDialog(null, "Este restaurante no tiene definido ningun sorteo");
+        }
+    }*/
 }
