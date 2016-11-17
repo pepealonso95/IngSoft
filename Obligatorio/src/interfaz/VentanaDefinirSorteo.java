@@ -5,8 +5,11 @@
  */
 package interfaz;
 
+import dominio.Restaurante;
 import dominio.Sistema;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +24,11 @@ public class VentanaDefinirSorteo extends javax.swing.JFrame {
         initComponents();
         this.padre = ventanaPrincipal;
         this.sistema = sistema;
+        String[] restaurantes = new String[this.sistema.getRestaurantes().size()];
+        for(int i = 0; i<restaurantes.length; i++){
+            restaurantes[i] = this.sistema.getRestaurantes().get(i).getNombre();
+        }
+        cmbBxRestaurantes.setModel(new DefaultComboBoxModel(restaurantes));
     }
 
     /**
@@ -32,24 +40,131 @@ public class VentanaDefinirSorteo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblTitulo = new javax.swing.JLabel();
+        btnDefinirSorteo = new javax.swing.JButton();
+        txtFldCantGanadores = new javax.swing.JTextField();
+        lblCantGanadores = new javax.swing.JLabel();
+        cmbBxRestaurantes = new javax.swing.JComboBox<String>();
+        txtFldDescripcionPremio = new javax.swing.JTextField();
+        lblDescripcionPremio = new javax.swing.JLabel();
+        lblElegirRestaurante = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblTitulo.setText("DEFINIR SORTEO");
+
+        btnDefinirSorteo.setText("DEFINIR SORTEO");
+        btnDefinirSorteo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDefinirSorteoActionPerformed(evt);
+            }
+        });
+
+        lblCantGanadores.setText("Defina la cantidad de ganadores:");
+
+        cmbBxRestaurantes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbBxRestaurantes.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cmbBxRestaurantesFocusLost(evt);
+            }
+        });
+
+        lblDescripcionPremio.setText("Describa el premio a sortear:");
+
+        lblElegirRestaurante.setText("Elegir que restaurante realiza el sorteo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblElegirRestaurante)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(cmbBxRestaurantes, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(139, 139, 139)
+                        .addComponent(lblTitulo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(btnDefinirSorteo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblCantGanadores))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblDescripcionPremio)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(2, 213, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtFldCantGanadores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFldDescripcionPremio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(2, 2, 2)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTitulo)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbBxRestaurantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblElegirRestaurante))
+                .addGap(43, 43, 43)
+                .addComponent(lblCantGanadores)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblDescripcionPremio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addComponent(btnDefinirSorteo)
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap(131, Short.MAX_VALUE)
+                    .addComponent(txtFldCantGanadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(txtFldDescripcionPremio, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(52, 52, 52)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    private void btnDefinirSorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDefinirSorteoActionPerformed
+        //Se verifica la informacion ingresada y se guarda la informacion del nuevo sorteo, si ya existe uno anteriormente, se sobreescribe
+        if(verificarCampos()){
+            String nombre = (String) cmbBxRestaurantes.getSelectedItem();
+            Restaurante restaurante = sistema.buscarRestaurantePorNombre(nombre);
+            restaurante.definirSorteo(Integer.parseInt(txtFldCantGanadores.getText()), txtFldDescripcionPremio.getText());
+        }else{
+            JOptionPane.showMessageDialog(null, "faltan campos a completar");
+        }
+    }//GEN-LAST:event_btnDefinirSorteoActionPerformed
+
+    private void cmbBxRestaurantesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbBxRestaurantesFocusLost
+
+    }//GEN-LAST:event_cmbBxRestaurantesFocusLost
+
+    private boolean verificarCampos(){
+       boolean retorno = true;
+       if(txtFldCantGanadores.getText().isEmpty() || txtFldDescripcionPremio.getText().isEmpty()){
+           retorno = false;
+       }
+       return retorno;
+   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDefinirSorteo;
+    private javax.swing.JComboBox<String> cmbBxRestaurantes;
+    private javax.swing.JLabel lblCantGanadores;
+    private javax.swing.JLabel lblDescripcionPremio;
+    private javax.swing.JLabel lblElegirRestaurante;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTextField txtFldCantGanadores;
+    private javax.swing.JTextField txtFldDescripcionPremio;
     // End of variables declaration//GEN-END:variables
 }

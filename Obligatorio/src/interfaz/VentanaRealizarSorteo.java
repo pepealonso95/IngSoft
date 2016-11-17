@@ -5,7 +5,9 @@
  */
 package interfaz;
 
+import dominio.Restaurante;
 import dominio.Sistema;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 
 /**
@@ -22,6 +24,11 @@ public class VentanaRealizarSorteo extends javax.swing.JFrame {
         initComponents();
         this.padre = ventanaPrincipal;
         this.sistema = sistema;
+        String[] restaurantes = new String[this.sistema.getRestaurantes().size()];
+        for(int i = 0; i<restaurantes.length; i++){
+            restaurantes[i] = this.sistema.getRestaurantes().get(i).getNombre();
+        }
+        cmbBxRestaurantes.setModel(new DefaultComboBoxModel(restaurantes));
     }
 
     /**
@@ -33,24 +40,105 @@ public class VentanaRealizarSorteo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblTitulo = new javax.swing.JLabel();
+        lblElegirRestaurante = new javax.swing.JLabel();
+        btnRealizarSorteo = new javax.swing.JButton();
+        lblCantGanadores = new javax.swing.JLabel();
+        cmbBxRestaurantes = new javax.swing.JComboBox<String>();
+        lblGanadores = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblTitulo.setText("REALIZAR SORTEO");
+
+        lblElegirRestaurante.setText("Elegir que restaurante realiza el sorteo");
+
+        btnRealizarSorteo.setText("DEFINIR SORTEO");
+        btnRealizarSorteo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRealizarSorteoActionPerformed(evt);
+            }
+        });
+
+        cmbBxRestaurantes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbBxRestaurantes.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cmbBxRestaurantesFocusLost(evt);
+            }
+        });
+
+        lblGanadores.setText("Ganadores:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblElegirRestaurante)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbBxRestaurantes, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(btnRealizarSorteo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(lblTitulo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblGanadores)))
+                .addContainerGap(41, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(lblCantGanadores)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(lblTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblElegirRestaurante)
+                    .addComponent(cmbBxRestaurantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(lblGanadores)
+                .addGap(125, 125, 125)
+                .addComponent(btnRealizarSorteo)
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(lblCantGanadores)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRealizarSorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarSorteoActionPerformed
+        //Se realiza el sorteo con el restaurante seleccion
+        String nombre = (String) cmbBxRestaurantes.getSelectedItem();
+        Restaurante restaurante = sistema.buscarRestaurantePorNombre(nombre);
+        restaurante.realizarSorteo();
+    }//GEN-LAST:event_btnRealizarSorteoActionPerformed
+
+    private void cmbBxRestaurantesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbBxRestaurantesFocusLost
+
+    }//GEN-LAST:event_cmbBxRestaurantesFocusLost
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRealizarSorteo;
+    private javax.swing.JComboBox<String> cmbBxRestaurantes;
+    private javax.swing.JLabel lblCantGanadores;
+    private javax.swing.JLabel lblElegirRestaurante;
+    private javax.swing.JLabel lblGanadores;
+    private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }

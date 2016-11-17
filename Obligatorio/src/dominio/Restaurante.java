@@ -147,33 +147,37 @@ public class Restaurante {
 
     public void realizarSorteo() {
         if (estaDefinidoSorteo) {
-            //me defino los numeros de los participantes ganadores
-            Random rand = new Random();
-            int cantParticipantes = participantes.size();
-            int cantGanadores = Math.min(cantidadGanadores, cantParticipantes);
-            ArrayList<Integer> numerosGanadores = new ArrayList(cantGanadores);
-            if (cantParticipantes <= cantGanadores) {
-                //ganan todos
-                for(int i = 0; i < cantGanadores; i++){
-                    numerosGanadores.add(i);
-                }
+            if (participantes.size() == 0) {
+                JOptionPane.showMessageDialog(null, "No hay clientes participantes del sorteo");
             } else {
-                //ganan algunos al azar
-                for (int i = 0; i < cantGanadores; i++) {
-                    int numeroAzar = rand.nextInt(cantParticipantes);
-                    while (numerosGanadores.contains(numeroAzar)) {
-                        numeroAzar = rand.nextInt(cantParticipantes);
+                //me defino los numeros de los participantes ganadores
+                Random rand = new Random();
+                int cantParticipantes = participantes.size();
+                int cantGanadores = Math.min(cantidadGanadores, cantParticipantes);
+                ArrayList<Integer> numerosGanadores = new ArrayList(cantGanadores);
+                if (cantParticipantes <= cantGanadores) {
+                    //ganan todos
+                    for (int i = 0; i < cantGanadores; i++) {
+                        numerosGanadores.add(i);
                     }
-                    numerosGanadores.add(numeroAzar);
+                } else {
+                    //ganan algunos al azar
+                    for (int i = 0; i < cantGanadores; i++) {
+                        int numeroAzar = rand.nextInt(cantParticipantes);
+                        while (numerosGanadores.contains(numeroAzar)) {
+                            numeroAzar = rand.nextInt(cantParticipantes);
+                        }
+                        numerosGanadores.add(numeroAzar);
+                    }
                 }
-            }
-            //aviso a ganadores
-            for(int i = 0 ; i < cantGanadores; i++){
-                int numero = numerosGanadores.get(i);
-                Cliente ganador = participantes.get(numero);
+                //aviso a ganadores
+                for (int i = 0; i < cantGanadores; i++) {
+                    int numero = numerosGanadores.get(i);
+                    Cliente ganador = participantes.get(numero);
                 //mandar mail a ganador
-                
-                //mostrar en pantalla ganador (cuando hagamos la ventana correspondiente)
+
+                    //mostrar en pantalla ganador (cuando hagamos la ventana correspondiente)
+                }
             }
         } else {
             JOptionPane.showMessageDialog(null, "Este restaurante no tiene definido ningun sorteo");
