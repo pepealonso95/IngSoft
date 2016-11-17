@@ -9,6 +9,7 @@ import dominio.Restaurante;
 import dominio.Sistema;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 
 /**
@@ -19,7 +20,8 @@ public class VentanaRealizarEvaluacion extends javax.swing.JFrame {
 
     private JFrame padre;
     private Sistema sistema;
-    private Restaurante aEditar;
+    private Restaurante aEvaluar;
+    private int puntuacion;
     
     //Constructor
     public VentanaRealizarEvaluacion(VentanaPrincipal ventanaPrincipal, Sistema sistema) {
@@ -32,6 +34,8 @@ public class VentanaRealizarEvaluacion extends javax.swing.JFrame {
         }
         cmbBxRestaurantes.setModel(new DefaultComboBoxModel(restaurantes));
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        rbtnStar1.setSelected(true);
+        puntuacion = 1;
     }
 
     /**
@@ -44,6 +48,22 @@ public class VentanaRealizarEvaluacion extends javax.swing.JFrame {
     private void initComponents() {
 
         cmbBxRestaurantes = new javax.swing.JComboBox<>();
+        rbtnStar1 = new javax.swing.JRadioButton();
+        rbtnStar2 = new javax.swing.JRadioButton();
+        rbtnStar3 = new javax.swing.JRadioButton();
+        rbtnStar4 = new javax.swing.JRadioButton();
+        rbtnStar5 = new javax.swing.JRadioButton();
+        lblStarRating = new javax.swing.JLabel();
+        txtFldNombre = new javax.swing.JTextField();
+        txtFldEmail = new javax.swing.JTextField();
+        lblNombre = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtReseña = new javax.swing.JTextArea();
+        lblReseña = new javax.swing.JLabel();
+        lblElejirRestaurante = new javax.swing.JLabel();
+        btnConfirmar = new javax.swing.JButton();
+        lblRealizarEvaluacion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -64,21 +84,160 @@ public class VentanaRealizarEvaluacion extends javax.swing.JFrame {
             }
         });
 
+        rbtnStar1.setText("1");
+        rbtnStar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                rbtnStar1MouseReleased(evt);
+            }
+        });
+
+        rbtnStar2.setText("2");
+        rbtnStar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                rbtnStar2MouseReleased(evt);
+            }
+        });
+
+        rbtnStar3.setText("3");
+        rbtnStar3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                rbtnStar3MouseReleased(evt);
+            }
+        });
+        rbtnStar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnStar3ActionPerformed(evt);
+            }
+        });
+
+        rbtnStar4.setText("4");
+        rbtnStar4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                rbtnStar4MouseReleased(evt);
+            }
+        });
+        rbtnStar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnStar4ActionPerformed(evt);
+            }
+        });
+
+        rbtnStar5.setText("5");
+        rbtnStar5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                rbtnStar5MouseReleased(evt);
+            }
+        });
+        rbtnStar5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnStar5ActionPerformed(evt);
+            }
+        });
+
+        lblStarRating.setText("Ingrese su Puntaje:");
+
+        txtFldNombre.setToolTipText("Ej.: Juan Perez");
+
+        txtFldEmail.setToolTipText("Ej.: Juan Perez");
+
+        lblNombre.setText("Ingrese su Nombre:");
+
+        lblEmail.setText("Ingrese su Email:");
+
+        txtReseña.setColumns(20);
+        txtReseña.setRows(5);
+        jScrollPane1.setViewportView(txtReseña);
+
+        lblReseña.setText("Escriba aquí su reseña:");
+
+        lblElejirRestaurante.setText("Elija el Restaurante:");
+
+        btnConfirmar.setText("Enviar Evaluación");
+        btnConfirmar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnConfirmarMouseReleased(evt);
+            }
+        });
+
+        lblRealizarEvaluacion.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblRealizarEvaluacion.setText("REALIZAR EVALUACIÓN");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addComponent(cmbBxRestaurantes, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbBxRestaurantes, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEmail)
+                    .addComponent(lblNombre)
+                    .addComponent(txtFldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblElejirRestaurante))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(rbtnStar1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblStarRating)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(rbtnStar2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rbtnStar3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbtnStar4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbtnStar5))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblReseña))
+                .addGap(24, 24, 24))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblRealizarEvaluacion)
+                .addGap(86, 86, 86))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(btnConfirmar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(cmbBxRestaurantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(lblRealizarEvaluacion)
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblStarRating)
+                    .addComponent(lblElejirRestaurante))
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbtnStar1)
+                    .addComponent(rbtnStar2)
+                    .addComponent(rbtnStar3)
+                    .addComponent(rbtnStar4)
+                    .addComponent(rbtnStar5)
+                    .addComponent(cmbBxRestaurantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(lblNombre))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblReseña)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtFldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(lblEmail)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -87,19 +246,19 @@ public class VentanaRealizarEvaluacion extends javax.swing.JFrame {
     private void cmbBxRestaurantesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbBxRestaurantesFocusLost
         // TODO add your handling code here:
         /*String nombre = (String) cmbBxRestaurantes.getSelectedItem();
-        Restaurante aEditar = this.sistema.buscarRestaurantePorNombre(nombre);
-        if(aEditar!=null){
-            txtFldNombre.setText(aEditar.getNombre());
-            txtFldDireccion.setText(aEditar.getDireccion());
-            txtFldHorarioApertura.setText(aEditar.getHorarioAbrir());
-            txtFldHorarioCierre.setText(aEditar.getHorarioCerrar());
-            txtFldTipoComida.setText(aEditar.getTipoComida());
+        Restaurante aEvaluar = this.sistema.buscarRestaurantePorNombre(nombre);
+        if(aEvaluar!=null){
+            txtFldNombre.setText(aEvaluar.getNombre());
+            txtFldDireccion.setText(aEvaluar.getDireccion());
+            txtFldHorarioApertura.setText(aEvaluar.getHorarioAbrir());
+            txtFldHorarioCierre.setText(aEvaluar.getHorarioCerrar());
+            txtFldTipoComida.setText(aEvaluar.getTipoComida());
         }*/
     }//GEN-LAST:event_cmbBxRestaurantesFocusLost
 
     private void cmbBxRestaurantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBxRestaurantesActionPerformed
         // TODO add your handling code here:
-        aEditar = this.sistema.buscarRestaurantePorNombre((String) cmbBxRestaurantes.getSelectedItem());
+        aEvaluar = this.sistema.buscarRestaurantePorNombre((String) cmbBxRestaurantes.getSelectedItem());
     }//GEN-LAST:event_cmbBxRestaurantesActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -109,8 +268,95 @@ public class VentanaRealizarEvaluacion extends javax.swing.JFrame {
         this.padre.setVisible(true);   
     }//GEN-LAST:event_formWindowClosing
 
+    private void rbtnStar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnStar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnStar3ActionPerformed
+
+    private void rbtnStar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnStar4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnStar4ActionPerformed
+
+    private void rbtnStar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnStar5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnStar5ActionPerformed
+
+    private void rbtnStar2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnStar2MouseReleased
+        // TODO add your handling code here:
+        rbtnStar2.setSelected(true);
+        rbtnStar3.setSelected(false);
+        rbtnStar4.setSelected(false);
+        rbtnStar5.setSelected(false);
+        puntuacion = 2;
+    }//GEN-LAST:event_rbtnStar2MouseReleased
+
+    private void rbtnStar3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnStar3MouseReleased
+        // TODO add your handling code here:+
+        rbtnStar2.setSelected(true);
+        rbtnStar3.setSelected(true);
+        rbtnStar4.setSelected(false);
+        rbtnStar5.setSelected(false);
+        puntuacion = 3;
+    }//GEN-LAST:event_rbtnStar3MouseReleased
+
+    private void rbtnStar4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnStar4MouseReleased
+        // TODO add your handling code here:
+        rbtnStar2.setSelected(true);
+        rbtnStar3.setSelected(true);
+        rbtnStar4.setSelected(true);
+        rbtnStar5.setSelected(false);
+        puntuacion = 4;
+    }//GEN-LAST:event_rbtnStar4MouseReleased
+
+    private void rbtnStar5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnStar5MouseReleased
+        // TODO add your handling code here:
+        rbtnStar2.setSelected(true);
+        rbtnStar3.setSelected(true);
+        rbtnStar4.setSelected(true);
+        rbtnStar5.setSelected(true);
+        puntuacion = 5;
+    }//GEN-LAST:event_rbtnStar5MouseReleased
+
+    private void btnConfirmarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMouseReleased
+        // TODO add your handling code here:
+        if(aEvaluar!=null){
+            aEvaluar.agregarEvaluacion(txtFldNombre.getText(), txtFldEmail.getText(), PROPERTIES, txtReseña.getText()); this.dispose();
+            JOptionPane.showMessageDialog(null, "Evaluación agregada con éxito");
+            this.dispose();
+                this.padre.setEnabled(true);
+                this.padre.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe elejir un restaurante");
+        }
+    }//GEN-LAST:event_btnConfirmarMouseReleased
+
+    private void rbtnStar1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnStar1MouseReleased
+        // TODO add your handling code here:
+        rbtnStar1.setSelected(true);
+        rbtnStar2.setSelected(false);
+        rbtnStar3.setSelected(false);
+        rbtnStar4.setSelected(false);
+        rbtnStar5.setSelected(false);
+        puntuacion = 1;
+    }//GEN-LAST:event_rbtnStar1MouseReleased
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConfirmar;
     private javax.swing.JComboBox<String> cmbBxRestaurantes;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblElejirRestaurante;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblRealizarEvaluacion;
+    private javax.swing.JLabel lblReseña;
+    private javax.swing.JLabel lblStarRating;
+    private javax.swing.JRadioButton rbtnStar1;
+    private javax.swing.JRadioButton rbtnStar2;
+    private javax.swing.JRadioButton rbtnStar3;
+    private javax.swing.JRadioButton rbtnStar4;
+    private javax.swing.JRadioButton rbtnStar5;
+    private javax.swing.JTextField txtFldEmail;
+    private javax.swing.JTextField txtFldNombre;
+    private javax.swing.JTextArea txtReseña;
     // End of variables declaration//GEN-END:variables
 }
