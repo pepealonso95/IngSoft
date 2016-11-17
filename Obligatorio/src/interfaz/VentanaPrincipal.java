@@ -23,6 +23,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public static void setSistema(Sistema sistema) {
         VentanaPrincipal.sistema = sistema;
     }
+
     public VentanaPrincipal() {
         initComponents();
     }
@@ -124,56 +125,53 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnRealizarEvaluacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarEvaluacionActionPerformed
         //se clickeo el boton para realizar una nueva evaluacion
-        VentanaRealizarEvaluacion ventana = new VentanaRealizarEvaluacion(this, sistema);
-        ventana.setVisible(true);
-        this.setEnabled(false);
+        if (VentanaPrincipal.sistema.getRestaurantes().size() > 0) {
+            VentanaRealizarEvaluacion ventana = new VentanaRealizarEvaluacion(this, sistema);
+            ventana.setVisible(true);
+            this.setEnabled(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "no hay restaurantes cargados para evaluar");
+        }
     }//GEN-LAST:event_btnRealizarEvaluacionActionPerformed
 
     private void btnCrearFichaRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearFichaRestauranteActionPerformed
         //se clickeo el boton para crear una nueva ficha de restaurante
-        if(VentanaPrincipal.sistema.getRestaurantes().size()>0){
-            VentanaCrearFichaRestaurante ventana = new VentanaCrearFichaRestaurante(this, sistema);
-            ventana.setVisible(true);
-            this.setVisible(false);
-            this.setEnabled(false);
-        }else{
-            JOptionPane.showMessageDialog(null, "no hay restaurantes cargados para evaluar");
-        }
+        VentanaCrearFichaRestaurante ventana = new VentanaCrearFichaRestaurante(this, sistema);
+        ventana.setVisible(true);
+        this.setVisible(false);
+        this.setEnabled(false);
     }//GEN-LAST:event_btnCrearFichaRestauranteActionPerformed
 
     private void btnEditarFichaRestauranteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarFichaRestauranteActionPerformed
         //se clickeo el boton para editar una ficha de restaurante
-        if(VentanaPrincipal.sistema.getRestaurantes().size()>0){
+        if (VentanaPrincipal.sistema.getRestaurantes().size() > 0) {
             VentanaEditarFichaRestaurante ventana = new VentanaEditarFichaRestaurante(this, sistema);
             ventana.setVisible(true);
             this.setVisible(false);
             this.setEnabled(false);
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "no hay restaurantes cargados para editar");
         }
     }//GEN-LAST:event_btnEditarFichaRestauranteActionPerformed
 
     private void btnDefinirSorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDefinirSorteoActionPerformed
         // Se clickeo el boton para definir un nuevo sorteo
-        if(VentanaPrincipal.sistema.getRestaurantes().size()>0){
+        if (VentanaPrincipal.sistema.getRestaurantes().size() > 0) {
             VentanaDefinirSorteo ventana = new VentanaDefinirSorteo(this, sistema);
             ventana.setVisible(true);
             this.setEnabled(false);
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "no hay restaurantes cargados para definirles sorteos");
         }
     }//GEN-LAST:event_btnDefinirSorteoActionPerformed
 
     private void btnRealizarSorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarSorteoActionPerformed
         // Se clickeo el boton para realizar un sorteo
-        if(VentanaPrincipal.sistema.getRestaurantes().size()>0){
+        if (VentanaPrincipal.sistema.getRestaurantes().size() > 0) {
             VentanaRealizarSorteo ventana = new VentanaRealizarSorteo(this, sistema);
             ventana.setVisible(true);
             this.setEnabled(false);
-         }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "no hay restaurantes cargados para realizarles sorteos");
         }
     }//GEN-LAST:event_btnRealizarSorteoActionPerformed
