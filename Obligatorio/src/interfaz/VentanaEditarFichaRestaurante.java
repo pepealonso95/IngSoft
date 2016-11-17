@@ -166,11 +166,10 @@ public class VentanaEditarFichaRestaurante extends javax.swing.JFrame {
     private void btnCrearFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearFichaActionPerformed
         //Se verifica la informacion ingresada, se crea y se guarda ficha del nuevo restaurante
         if(verificarCampos()){
-            if(this.sistema.agregarRestaurante(txtFldNombre.getText(), txtFldDireccion.getText(), txtFldHorarioApertura.getText(), txtFldHorarioCierre.getText(), txtFldTipoComida.getText())){
-                this.dispose();
-                this.padre.setEnabled(true);
-                this.padre.setVisible(true);
-            }
+            this.sistema.editarRestaurante(txtFldNombre.getText(), txtFldDireccion.getText(), txtFldHorarioApertura.getText(), txtFldHorarioCierre.getText(), txtFldTipoComida.getText());
+            this.dispose();
+            this.padre.setEnabled(true);
+            this.padre.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "faltan campos a completar");
         }

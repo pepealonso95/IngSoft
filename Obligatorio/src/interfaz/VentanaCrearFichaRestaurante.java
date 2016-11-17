@@ -178,7 +178,6 @@ public class VentanaCrearFichaRestaurante extends javax.swing.JFrame {
    private boolean verificarCampos(){
        boolean retorno = true;
        if(txtFldNombre.getText().isEmpty() || txtFldDireccion.getText().isEmpty() || txtFldHorarioApertura.getText().isEmpty() || txtFldHorarioCierre.getText().isEmpty() || txtFldTipoComida.getText().isEmpty()){
-           
            retorno = false;
        }
        return retorno;
