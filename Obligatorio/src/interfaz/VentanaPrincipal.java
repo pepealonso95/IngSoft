@@ -133,6 +133,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         //se clickeo el boton para crear una nueva ficha de restaurante
         VentanaCrearFichaRestaurante ventana = new VentanaCrearFichaRestaurante(this, sistema);
         ventana.setVisible(true);
+        this.setVisible(false);
         this.setEnabled(false);
     }//GEN-LAST:event_btnCrearFichaRestauranteActionPerformed
 
@@ -141,6 +142,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if(VentanaPrincipal.sistema.getRestaurantes().size()>0){
             VentanaEditarFichaRestaurante ventana = new VentanaEditarFichaRestaurante(this, sistema);
             ventana.setVisible(true);
+            this.setVisible(false);
             this.setEnabled(false);
         }
         else{
