@@ -145,7 +145,8 @@ public class Restaurante {
         this.descripcionPremio = premio;
     }
 
-    public void realizarSorteo() {
+    public ArrayList<Cliente> realizarSorteo() {
+        ArrayList<Cliente> retorno = new ArrayList();
         if (estaDefinidoSorteo) {
             if (participantes.size() == 0) {
                 JOptionPane.showMessageDialog(null, "No hay clientes participantes del sorteo");
@@ -174,13 +175,15 @@ public class Restaurante {
                 for (int i = 0; i < cantGanadores; i++) {
                     int numero = numerosGanadores.get(i);
                     Cliente ganador = participantes.get(numero);
-                //mandar mail a ganador
-
-                    //mostrar en pantalla ganador (cuando hagamos la ventana correspondiente)
+                    //lo agrego a la lista de retorno
+                    retorno.add(ganador);
+                    //mandar mail a ganador
+                    
                 }
             }
         } else {
             JOptionPane.showMessageDialog(null, "Este restaurante no tiene definido ningun sorteo");
         }
+        return retorno;
     }
 }

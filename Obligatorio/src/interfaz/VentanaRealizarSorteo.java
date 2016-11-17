@@ -5,10 +5,13 @@
  */
 package interfaz;
 
+import dominio.Cliente;
 import dominio.Restaurante;
 import dominio.Sistema;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,14 +21,14 @@ public class VentanaRealizarSorteo extends javax.swing.JFrame {
 
     private JFrame padre;
     private Sistema sistema;
-    
+
     //Constructor
     public VentanaRealizarSorteo(VentanaPrincipal ventanaPrincipal, Sistema sistema) {
         initComponents();
         this.padre = ventanaPrincipal;
         this.sistema = sistema;
         String[] restaurantes = new String[this.sistema.getRestaurantes().size()];
-        for(int i = 0; i<restaurantes.length; i++){
+        for (int i = 0; i < restaurantes.length; i++) {
             restaurantes[i] = this.sistema.getRestaurantes().get(i).getNombre();
         }
         cmbBxRestaurantes.setModel(new DefaultComboBoxModel(restaurantes));
@@ -131,7 +134,15 @@ public class VentanaRealizarSorteo extends javax.swing.JFrame {
         //Se realiza el sorteo con el restaurante seleccion
         String nombre = (String) cmbBxRestaurantes.getSelectedItem();
         Restaurante restaurante = sistema.buscarRestaurantePorNombre(nombre);
-        restaurante.realizarSorteo();
+        ArrayList<Cliente> ganadores = restaurante.realizarSorteo();
+        if(ganadores.size()!=0){
+            //mostrar en la pantalla
+            
+            this.dispose();
+            this.padre.setEnabled(true);
+            this.padre.setVisible(true);
+        }
+        
     }//GEN-LAST:event_btnRealizarSorteoActionPerformed
 
     private void cmbBxRestaurantesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbBxRestaurantesFocusLost
@@ -142,11 +153,9 @@ public class VentanaRealizarSorteo extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
         this.padre.setEnabled(true);
-        this.padre.setVisible(true);   
+        this.padre.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
-
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRealizarSorteo;
