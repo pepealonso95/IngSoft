@@ -133,6 +133,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         //se clickeo el boton para crear una nueva ficha de restaurante
         VentanaCrearFichaRestaurante ventana = new VentanaCrearFichaRestaurante(this, sistema);
         ventana.setVisible(true);
+        this.setVisible(false);
         this.setEnabled(false);
     }//GEN-LAST:event_btnCrearFichaRestauranteActionPerformed
 
@@ -141,6 +142,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if(VentanaPrincipal.sistema.getRestaurantes().size()>0){
             VentanaEditarFichaRestaurante ventana = new VentanaEditarFichaRestaurante(this, sistema);
             ventana.setVisible(true);
+            this.setVisible(false);
             this.setEnabled(false);
         }
         else{
@@ -150,26 +152,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnDefinirSorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDefinirSorteoActionPerformed
         // Se clickeo el boton para definir un nuevo sorteo
-        if(VentanaPrincipal.sistema.getRestaurantes().size()>0){
         VentanaDefinirSorteo ventana = new VentanaDefinirSorteo(this, sistema);
         ventana.setVisible(true);
         this.setEnabled(false);
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "no hay restaurantes cargados para editar");
-        }
     }//GEN-LAST:event_btnDefinirSorteoActionPerformed
 
     private void btnRealizarSorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarSorteoActionPerformed
         // Se clickeo el boton para realizar un sorteo
-        if(VentanaPrincipal.sistema.getRestaurantes().size()>0){
         VentanaRealizarSorteo ventana = new VentanaRealizarSorteo(this, sistema);
         ventana.setVisible(true);
         this.setEnabled(false);
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "no hay restaurantes cargados para editar");
-        }
     }//GEN-LAST:event_btnRealizarSorteoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

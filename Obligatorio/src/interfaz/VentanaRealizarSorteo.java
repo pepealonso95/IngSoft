@@ -29,6 +29,7 @@ public class VentanaRealizarSorteo extends javax.swing.JFrame {
             restaurantes[i] = this.sistema.getRestaurantes().get(i).getNombre();
         }
         cmbBxRestaurantes.setModel(new DefaultComboBoxModel(restaurantes));
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     /**
@@ -48,6 +49,11 @@ public class VentanaRealizarSorteo extends javax.swing.JFrame {
         lblGanadores = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         lblTitulo.setText("REALIZAR SORTEO");
 
@@ -120,6 +126,7 @@ public class VentanaRealizarSorteo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void btnRealizarSorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarSorteoActionPerformed
         //Se realiza el sorteo con el restaurante seleccion
         String nombre = (String) cmbBxRestaurantes.getSelectedItem();
@@ -130,6 +137,14 @@ public class VentanaRealizarSorteo extends javax.swing.JFrame {
     private void cmbBxRestaurantesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbBxRestaurantesFocusLost
 
     }//GEN-LAST:event_cmbBxRestaurantesFocusLost
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        this.dispose();
+        this.padre.setEnabled(true);
+        this.padre.setVisible(true);   
+    }//GEN-LAST:event_formWindowClosing
+
 
     
 

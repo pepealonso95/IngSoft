@@ -43,9 +43,9 @@ public class Sistema {
         }
     }
     
-     public void editarRestaurante(String nombre, String direccion, String horarioApertura, String horarioCierre, String tipoComida){
+     public void editarRestaurante(String original, String nombre, String direccion, String horarioApertura, String horarioCierre, String tipoComida){
         //edita los datos de un restaurante previamente ingresado al sistema
-        Restaurante restaurante = buscarRestaurantePorNombre(nombre);
+        Restaurante restaurante = buscarRestaurantePorNombre(original);
         restaurante.setNombre(nombre);
         restaurante.setDireccion(direccion);
         restaurante.setHorarioAbrir(horarioApertura);

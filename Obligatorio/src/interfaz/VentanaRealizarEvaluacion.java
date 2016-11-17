@@ -5,8 +5,11 @@
  */
 package interfaz;
 
+import dominio.Restaurante;
 import dominio.Sistema;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 
 /**
  *
@@ -16,12 +19,19 @@ public class VentanaRealizarEvaluacion extends javax.swing.JFrame {
 
     private JFrame padre;
     private Sistema sistema;
+    private Restaurante aEditar;
     
     //Constructor
     public VentanaRealizarEvaluacion(VentanaPrincipal ventanaPrincipal, Sistema sistema) {
         initComponents();
         this.padre = ventanaPrincipal;
         this.sistema = sistema;
+        String[] restaurantes = new String[this.sistema.getRestaurantes().size()];
+        for(int i = 0; i<restaurantes.length; i++){
+            restaurantes[i] = this.sistema.getRestaurantes().get(i).getNombre();
+        }
+        cmbBxRestaurantes.setModel(new DefaultComboBoxModel(restaurantes));
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     /**
@@ -33,23 +43,74 @@ public class VentanaRealizarEvaluacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        cmbBxRestaurantes = new javax.swing.JComboBox<>();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
+
+        cmbBxRestaurantes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbBxRestaurantes.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cmbBxRestaurantesFocusLost(evt);
+            }
+        });
+        cmbBxRestaurantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbBxRestaurantesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(137, 137, 137)
+                .addComponent(cmbBxRestaurantes, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(144, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(cmbBxRestaurantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(205, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cmbBxRestaurantesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbBxRestaurantesFocusLost
+        // TODO add your handling code here:
+        /*String nombre = (String) cmbBxRestaurantes.getSelectedItem();
+        Restaurante aEditar = this.sistema.buscarRestaurantePorNombre(nombre);
+        if(aEditar!=null){
+            txtFldNombre.setText(aEditar.getNombre());
+            txtFldDireccion.setText(aEditar.getDireccion());
+            txtFldHorarioApertura.setText(aEditar.getHorarioAbrir());
+            txtFldHorarioCierre.setText(aEditar.getHorarioCerrar());
+            txtFldTipoComida.setText(aEditar.getTipoComida());
+        }*/
+    }//GEN-LAST:event_cmbBxRestaurantesFocusLost
+
+    private void cmbBxRestaurantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBxRestaurantesActionPerformed
+        // TODO add your handling code here:
+        aEditar = this.sistema.buscarRestaurantePorNombre((String) cmbBxRestaurantes.getSelectedItem());
+    }//GEN-LAST:event_cmbBxRestaurantesActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        this.dispose();
+        this.padre.setEnabled(true);
+        this.padre.setVisible(true);   
+    }//GEN-LAST:event_formWindowClosing
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cmbBxRestaurantes;
     // End of variables declaration//GEN-END:variables
 }

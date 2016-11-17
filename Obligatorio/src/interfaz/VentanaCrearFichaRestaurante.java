@@ -17,11 +17,13 @@ public class VentanaCrearFichaRestaurante extends javax.swing.JFrame {
     private JFrame padre;
     private Sistema sistema;
     
+    
     //Constructor 
     public VentanaCrearFichaRestaurante(VentanaPrincipal ventanaPrincipal, Sistema sistema) {
         initComponents();
         this.padre = ventanaPrincipal;
         this.sistema = sistema;
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     /**
@@ -165,12 +167,13 @@ public class VentanaCrearFichaRestaurante extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-        this.padre.setEnabled(true);
-        this.padre.setVisible(true);
+        /*this.padre.setEnabled(true);
+        this.padre.setVisible(true);*/
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
+        this.dispose();
         this.padre.setEnabled(true);
         this.padre.setVisible(true);                             
     }//GEN-LAST:event_formWindowClosing

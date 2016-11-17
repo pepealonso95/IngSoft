@@ -29,6 +29,7 @@ public class VentanaDefinirSorteo extends javax.swing.JFrame {
             restaurantes[i] = this.sistema.getRestaurantes().get(i).getNombre();
         }
         cmbBxRestaurantes.setModel(new DefaultComboBoxModel(restaurantes));
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     /**
@@ -50,6 +51,11 @@ public class VentanaDefinirSorteo extends javax.swing.JFrame {
         lblElegirRestaurante = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         lblTitulo.setText("DEFINIR SORTEO");
 
@@ -156,6 +162,13 @@ public class VentanaDefinirSorteo extends javax.swing.JFrame {
        }
        return retorno;
    }
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        this.dispose();
+        this.padre.setEnabled(true);
+        this.padre.setVisible(true);    
+    }//GEN-LAST:event_formWindowClosing
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDefinirSorteo;
