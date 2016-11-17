@@ -35,6 +35,11 @@ public class Cliente {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "nombre: " + nombre + ", email: " + email;
+    }
     
     public boolean noEsAnonimo(){
         //retorna true si se posee informacion del cliente

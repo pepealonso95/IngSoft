@@ -49,7 +49,6 @@ public class VentanaRealizarSorteo extends javax.swing.JFrame {
         btnRealizarSorteo = new javax.swing.JButton();
         lblCantGanadores = new javax.swing.JLabel();
         cmbBxRestaurantes = new javax.swing.JComboBox<String>();
-        lblGanadores = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -62,7 +61,7 @@ public class VentanaRealizarSorteo extends javax.swing.JFrame {
 
         lblElegirRestaurante.setText("Elegir que restaurante realiza el sorteo");
 
-        btnRealizarSorteo.setText("DEFINIR SORTEO");
+        btnRealizarSorteo.setText("REALIZAR SORTEO");
         btnRealizarSorteo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRealizarSorteoActionPerformed(evt);
@@ -75,8 +74,6 @@ public class VentanaRealizarSorteo extends javax.swing.JFrame {
                 cmbBxRestaurantesFocusLost(evt);
             }
         });
-
-        lblGanadores.setText("Ganadores:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,10 +91,7 @@ public class VentanaRealizarSorteo extends javax.swing.JFrame {
                         .addComponent(btnRealizarSorteo))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(137, 137, 137)
-                        .addComponent(lblTitulo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblGanadores)))
+                        .addComponent(lblTitulo)))
                 .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -114,9 +108,7 @@ public class VentanaRealizarSorteo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblElegirRestaurante)
                     .addComponent(cmbBxRestaurantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(lblGanadores)
-                .addGap(125, 125, 125)
+                .addGap(159, 159, 159)
                 .addComponent(btnRealizarSorteo)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,7 +129,11 @@ public class VentanaRealizarSorteo extends javax.swing.JFrame {
         ArrayList<Cliente> ganadores = restaurante.realizarSorteo();
         if(ganadores.size()!=0){
             //mostrar en la pantalla
-            
+            String output = "";
+            for(int i = 0 ; i < ganadores.size(); i++){
+                output = output + ganadores.get(i) + "\n";
+            }
+            JOptionPane.showMessageDialog(null, output);
             this.dispose();
             this.padre.setEnabled(true);
             this.padre.setVisible(true);
@@ -162,7 +158,6 @@ public class VentanaRealizarSorteo extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbBxRestaurantes;
     private javax.swing.JLabel lblCantGanadores;
     private javax.swing.JLabel lblElegirRestaurante;
-    private javax.swing.JLabel lblGanadores;
     private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }

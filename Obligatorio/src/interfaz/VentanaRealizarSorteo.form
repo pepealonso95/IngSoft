@@ -42,10 +42,6 @@
                       <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
                       <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblGanadores" min="-2" max="-2" attributes="0"/>
-                  </Group>
               </Group>
               <EmptySpace pref="41" max="32767" attributes="0"/>
           </Group>
@@ -68,9 +64,7 @@
                   <Component id="lblElegirRestaurante" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cmbBxRestaurantes" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="lblGanadores" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
               <Component id="btnRealizarSorteo" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -97,7 +91,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnRealizarSorteo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="DEFINIR SORTEO"/>
+        <Property name="text" type="java.lang.String" value="REALIZAR SORTEO"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRealizarSorteoActionPerformed"/>
@@ -122,11 +116,6 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblGanadores">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ganadores:"/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -322,8 +322,8 @@ public class VentanaRealizarEvaluacion extends javax.swing.JFrame {
             aEvaluar.agregarEvaluacion(txtFldNombre.getText(), txtFldEmail.getText(), PROPERTIES, txtReseña.getText()); this.dispose();
             JOptionPane.showMessageDialog(null, "Evaluación agregada con éxito");
             this.dispose();
-                this.padre.setEnabled(true);
-                this.padre.setVisible(true);
+            this.padre.setEnabled(true);
+            this.padre.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Debe elejir un restaurante");
         }
