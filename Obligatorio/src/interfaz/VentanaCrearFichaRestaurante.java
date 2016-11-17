@@ -51,6 +51,9 @@ public class VentanaCrearFichaRestaurante extends javax.swing.JFrame {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
         });
 
         lblTitulo.setText("CREAR FICHA RESTAURANTE");
@@ -165,6 +168,12 @@ public class VentanaCrearFichaRestaurante extends javax.swing.JFrame {
         this.padre.setEnabled(true);
         this.padre.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        this.padre.setEnabled(true);
+        this.padre.setVisible(true);                             
+    }//GEN-LAST:event_formWindowClosing
 
    private boolean verificarCampos(){
        boolean retorno = true;
